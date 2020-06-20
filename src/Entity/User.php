@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -33,6 +37,43 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+  
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_de_naissance;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="User", orphanRemoval=true)
+     */
+    private $rendezvouses;
+
+    public function __construct()
+    {
+        $this->rendezvouses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,5 +151,159 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getDateDeNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_de_naissance;
+    }
+
+    public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
+    {
+        $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    
+
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prix_visite;
+
+    /**
+     * @ORM\Column(type="integer" ,nullable=true)
+     */
+    private $cin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Cabinet_add;
+
+    /**
+     * @ORM\Column(type="string", length=255 nullable=true)
+     */
+
+    /**
+     * @return Collection|Rendezvous[]
+     */
+    public function getRendezvouses(): Collection
+    {
+        return $this->rendezvouses;
+    }
+
+    public function addRendezvouse(Rendezvous $rendezvouse): self
+    {
+        if (!$this->rendezvouses->contains($rendezvouse)) {
+            $this->rendezvouses[] = $rendezvouse;
+            $rendezvouse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRendezvouse(Rendezvous $rendezvouse): self
+    {
+        if ($this->rendezvouses->contains($rendezvouse)) {
+            $this->rendezvouses->removeElement($rendezvouse);
+            // set the owning side to null (unless already changed)
+            if ($rendezvouse->getUser() === $this) {
+                $rendezvouse->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
+ 
+
+    public function getPrixVisite(): ?float
+    {
+        return $this->prix_visite;
+    }
+
+    public function setPrixVisite(float $prix_visite): self
+    {
+        $this->prix_visite = $prix_visite;
+
+        return $this;
+    }
+
+    public function getCin(): ?int
+    {
+        return $this->cin;
+    }
+
+    public function setCin(int $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getCabinetAdd(): ?string
+    {
+        return $this->Cabinet_add;
+    }
+
+    public function setCabinetAdd(?string $Cabinet_add): self
+    {
+        $this->Cabinet_add = $Cabinet_add;
+
+        return $this;
     }
 }

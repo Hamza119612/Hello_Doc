@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rendezvous{% endblock %}
+
+{% block body %}
+    <h1>Create new Rendezvous</h1>
+
+    {{ include('rendezvous/_form.html.twig') }}
+
+    <a href="{{ path('rendezvous_index') }}">back to list</a>
+
+
+     <script>
+    
+      $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+    
+    </script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="text" value="{{email}}" name="email" >
+    <input type="text" value="{{nom}}" name="nom" >
+    <input type="text" value="{{prenom}}" name="prenom" >
+    <input type="text" value="{{type}}" name="type" >
+    <input type="text" value="{{telephone}}" name="telephone" >
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

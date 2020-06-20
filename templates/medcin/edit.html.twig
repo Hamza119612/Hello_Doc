@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Medcin{% endblock %}
+
+{% block body %}
+    <h1>Edit Medcin</h1>
+
+    {{ include('medcin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('medcin_index') }}">back to list</a>
+
+    {{ include('medcin/_delete_form.html.twig') }}
+{% endblock %}

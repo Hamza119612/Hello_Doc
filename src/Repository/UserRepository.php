@@ -64,4 +64,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    public function findtherightdoc()
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM user INNER JOIN medcin ON "user.email" = "medcin.email" ' ;
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
+
+    
+    public function findBydoc()
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM user where type = "Docteur"' ;
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
 }

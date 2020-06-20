@@ -1,0 +1,27 @@
+{# index.html.twig #}
+{% extends 'base.html.twig' %}
+
+
+
+
+
+{% block body %}
+{% include "inc/navigation.html.twig" %}
+
+
+{% if app.user %}
+<div class="container">
+<div class="mb-3">
+ <h1>   Bounjour  {{ app.user.nom }}</h1> 
+    <p>Pour les patients
+                Un doute, une inquiétude, besoin d’un conseil santé ? <strong> Hello Doctor</strong> c’est la solution
+
+            <strong> Hello Doctor</strong> est une plateforme innovante qui vous permet de trouver rapidement un médecin le plus proche de chez vous et de prendre rendez-vous en ligne gratuitemen</p>
+</div>
+</div>
+
+
+
+{% endif %}
+          
+{% endblock %}
