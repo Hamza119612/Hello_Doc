@@ -239,46 +239,7 @@ class User implements UserInterface
         return $this;
     }
 
-<<<<<<< HEAD
-    
-
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $prix_visite;
-
-    /**
-     * @ORM\Column(type="integer" ,nullable=true)
-     */
-    private $cin;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Cabinet_add;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $is_registred;
-
-    /**
-     * @ORM\Column(type="string", length=255 nullable=true)
-     */
-
-    /**
-     * @return Collection|Rendezvous[]
-     */
-    public function getRendezvouses(): Collection
-    {
-        return $this->rendezvouses;
-    }
-
-    public function addRendezvouse(Rendezvous $rendezvouse): self
-=======
     public function getCIN(): ?int
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
     {
         return $this->CIN;
     }
@@ -326,20 +287,5 @@ class User implements UserInterface
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getIsRegistred(): ?bool
-    {
-        return $this->is_registred;
-    }
-
-    public function setIsRegistred(?bool $is_registred): self
-    {
-        $this->is_registred = $is_registred;
-
-        return $this;
-    }
-}
-=======
 
 }
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893

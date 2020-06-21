@@ -61,10 +61,6 @@ class MedcinController extends AbstractController
         $user->setDateDeNaissance($date_de_naissance);
         $user->setRoles(['ROLE_MEDCIN']); 
         $user->setIsRegistred(TRUE); 
-<<<<<<< HEAD:src/Controller/MedcinController.php
-
-=======
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893:src/Controller/Medcin/MedcinController.php
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

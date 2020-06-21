@@ -1,8 +1,4 @@
 easy_admin_bundle:
     resource: '@EasyAdminBundle/Controller/EasyAdminController.php'
-<<<<<<< HEAD
     prefix: /Backside
-=======
-    prefix: /fonts
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
     type: annotation
