@@ -42,6 +42,7 @@ class MedcinController extends AbstractController
     {
         $form = $this->createForm(Usertype::class, $user);
         $form->handleRequest($request);
+        $is_registred = $this->getUser()->getIsRegistred();
 
         $email = $this->getUser()->getEmail();
         $nom = $this->getUser()->getNom();
@@ -55,7 +56,9 @@ class MedcinController extends AbstractController
         $user->setType($type);
         $user->setTelephone($telephone);
         $user->setDateDeNaissance($date_de_naissance);
-        $user->setRoles(['ROLE_ADMIN']); 
+        $user->setRoles(['ROLE_MEDCIN']); 
+        $user->setIsRegistred(TRUE); 
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -63,7 +66,9 @@ class MedcinController extends AbstractController
 
 
             $this->getDoctrine()->getManager()->flush();
-            
+
+
+            return $this->redirectToRoute('app_login');
             
         }
 

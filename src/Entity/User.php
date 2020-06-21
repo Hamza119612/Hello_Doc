@@ -51,17 +51,17 @@ class User implements UserInterface
   
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $type;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer" , nullable=true)
      */
     private $telephone;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime" , nullable=true)
      */
     private $date_de_naissance;
 
@@ -234,6 +234,11 @@ class User implements UserInterface
     private $Cabinet_add;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_registred;
+
+    /**
      * @ORM\Column(type="string", length=255 nullable=true)
      */
 
@@ -303,6 +308,18 @@ class User implements UserInterface
     public function setCabinetAdd(?string $Cabinet_add): self
     {
         $this->Cabinet_add = $Cabinet_add;
+
+        return $this;
+    }
+
+    public function getIsRegistred(): ?bool
+    {
+        return $this->is_registred;
+    }
+
+    public function setIsRegistred(?bool $is_registred): self
+    {
+        $this->is_registred = $is_registred;
 
         return $this;
     }
