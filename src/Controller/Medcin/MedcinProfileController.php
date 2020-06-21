@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Medcin_Profile;
+namespace App\Controller\Medcin ;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

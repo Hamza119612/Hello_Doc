@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Medcin;
 
 use App\Entity\Medcin;
 use App\Entity\User;
@@ -12,8 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
+ * 
  * @Route("/medcin")
  */
 class MedcinController extends AbstractController
@@ -36,6 +38,7 @@ class MedcinController extends AbstractController
         ]);
     }
     /**
+     *
      * @Route("/{id}/completer_profil", name="completer_profil", methods={"GET","POST"})
      */
     public function new($id,Request $request , UserRepository $UserRepository, User $user): Response
@@ -58,7 +61,10 @@ class MedcinController extends AbstractController
         $user->setDateDeNaissance($date_de_naissance);
         $user->setRoles(['ROLE_MEDCIN']); 
         $user->setIsRegistred(TRUE); 
+<<<<<<< HEAD:src/Controller/MedcinController.php
 
+=======
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893:src/Controller/Medcin/MedcinController.php
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -83,47 +89,5 @@ class MedcinController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="medcin_show", methods={"GET"})
-     */
-    public function show(Medcin $medcin): Response
-    {
-        return $this->render('medcin/show.html.twig', [
-            'medcin' => $medcin,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="medcin_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Medcin $medcin): Response
-    {
-        $form = $this->createForm(MedcinType::class, $medcin);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('medcin_index');
-        }
-
-        return $this->render('medcin/edit.html.twig', [
-            'medcin' => $medcin,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="medcin_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Medcin $medcin): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$medcin->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($medcin);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('medcin_index');
-    }
+  
 }

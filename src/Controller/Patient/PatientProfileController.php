@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Patient_profile;
+namespace App\Controller\Patient;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

@@ -48,33 +48,58 @@ class User implements UserInterface
      */
     private $prenom;
 
-  
-
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="string", length=255 , nullable=true)
+=======
+     * @ORM\Column(type="string", length=255, nullable=true)
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
      */
     private $type;
 
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="integer" , nullable=true)
+=======
+     * @ORM\Column(type="integer", nullable=true)
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
      */
     private $telephone;
 
+  
+
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="datetime" , nullable=true)
+=======
+     * @ORM\Column(type="integer", nullable=true)
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
+     */
+    private $prix_visite;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $CIN;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Cabinet_add;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_registred;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_de_naissance;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="User", orphanRemoval=true)
-     */
-    private $rendezvouses;
+   
 
-    public function __construct()
-    {
-        $this->rendezvouses = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -177,14 +202,12 @@ class User implements UserInterface
         return $this;
     }
 
-
-
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
@@ -196,25 +219,27 @@ class User implements UserInterface
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTelephone(?int $telephone): self
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getDateDeNaissance(): ?\DateTimeInterface
+
+    public function getPrixVisite(): ?int
     {
-        return $this->date_de_naissance;
+        return $this->prix_visite;
     }
 
-    public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
+    public function setPrixVisite(?int $prix_visite): self
     {
-        $this->date_de_naissance = $date_de_naissance;
+        $this->prix_visite = $prix_visite;
 
         return $this;
     }
 
+<<<<<<< HEAD
     
 
 
@@ -251,51 +276,16 @@ class User implements UserInterface
     }
 
     public function addRendezvouse(Rendezvous $rendezvouse): self
+=======
+    public function getCIN(): ?int
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
     {
-        if (!$this->rendezvouses->contains($rendezvouse)) {
-            $this->rendezvouses[] = $rendezvouse;
-            $rendezvouse->setUser($this);
-        }
-
-        return $this;
+        return $this->CIN;
     }
 
-    public function removeRendezvouse(Rendezvous $rendezvouse): self
+    public function setCIN(?int $CIN): self
     {
-        if ($this->rendezvouses->contains($rendezvouse)) {
-            $this->rendezvouses->removeElement($rendezvouse);
-            // set the owning side to null (unless already changed)
-            if ($rendezvouse->getUser() === $this) {
-                $rendezvouse->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    
- 
-
-    public function getPrixVisite(): ?float
-    {
-        return $this->prix_visite;
-    }
-
-    public function setPrixVisite(float $prix_visite): self
-    {
-        $this->prix_visite = $prix_visite;
-
-        return $this;
-    }
-
-    public function getCin(): ?int
-    {
-        return $this->cin;
-    }
-
-    public function setCin(int $cin): self
-    {
-        $this->cin = $cin;
+        $this->CIN = $CIN;
 
         return $this;
     }
@@ -323,4 +313,33 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getDateDeNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_de_naissance;
+    }
+
+    public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
+    {
+        $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+<<<<<<< HEAD
+    public function getIsRegistred(): ?bool
+    {
+        return $this->is_registred;
+    }
+
+    public function setIsRegistred(?bool $is_registred): self
+    {
+        $this->is_registred = $is_registred;
+
+        return $this;
+    }
 }
+=======
+
+}
+>>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
