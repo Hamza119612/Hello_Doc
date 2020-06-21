@@ -2,6 +2,7 @@
 
 namespace App\Controller\midlware;
 Use App\Entity\User;
+Use App\Repository\UserRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ class VerficiationController extends AbstractController
     /**
      * @Route("/verficiation", name="verficiation")
      */
-    public function index( User $user)
+    public function index()
     {
         $is_registred = $this->getUser()->getIsRegistred();
 
