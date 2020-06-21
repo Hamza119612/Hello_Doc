@@ -48,33 +48,46 @@ class User implements UserInterface
      */
     private $prenom;
 
-  
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $telephone;
 
+  
+
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $prix_visite;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $CIN;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Cabinet_add;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_registred;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_de_naissance;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="User", orphanRemoval=true)
-     */
-    private $rendezvouses;
+   
 
-    public function __construct()
-    {
-        $this->rendezvouses = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -177,14 +190,12 @@ class User implements UserInterface
         return $this;
     }
 
-
-
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
@@ -196,101 +207,34 @@ class User implements UserInterface
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTelephone(?int $telephone): self
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getDateDeNaissance(): ?\DateTimeInterface
-    {
-        return $this->date_de_naissance;
-    }
 
-    public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
-    {
-        $this->date_de_naissance = $date_de_naissance;
-
-        return $this;
-    }
-
-    
-
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $prix_visite;
-
-    /**
-     * @ORM\Column(type="integer" ,nullable=true)
-     */
-    private $cin;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Cabinet_add;
-
-    /**
-     * @ORM\Column(type="string", length=255 nullable=true)
-     */
-
-    /**
-     * @return Collection|Rendezvous[]
-     */
-    public function getRendezvouses(): Collection
-    {
-        return $this->rendezvouses;
-    }
-
-    public function addRendezvouse(Rendezvous $rendezvouse): self
-    {
-        if (!$this->rendezvouses->contains($rendezvouse)) {
-            $this->rendezvouses[] = $rendezvouse;
-            $rendezvouse->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRendezvouse(Rendezvous $rendezvouse): self
-    {
-        if ($this->rendezvouses->contains($rendezvouse)) {
-            $this->rendezvouses->removeElement($rendezvouse);
-            // set the owning side to null (unless already changed)
-            if ($rendezvouse->getUser() === $this) {
-                $rendezvouse->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    
- 
-
-    public function getPrixVisite(): ?float
+    public function getPrixVisite(): ?int
     {
         return $this->prix_visite;
     }
 
-    public function setPrixVisite(float $prix_visite): self
+    public function setPrixVisite(?int $prix_visite): self
     {
         $this->prix_visite = $prix_visite;
 
         return $this;
     }
 
-    public function getCin(): ?int
+    public function getCIN(): ?int
     {
-        return $this->cin;
+        return $this->CIN;
     }
 
-    public function setCin(int $cin): self
+    public function setCIN(?int $CIN): self
     {
-        $this->cin = $cin;
+        $this->CIN = $CIN;
 
         return $this;
     }
@@ -306,4 +250,30 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getIsRegistred(): ?bool
+    {
+        return $this->is_registred;
+    }
+
+    public function setIsRegistred(?bool $is_registred): self
+    {
+        $this->is_registred = $is_registred;
+
+        return $this;
+    }
+
+    public function getDateDeNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_de_naissance;
+    }
+
+    public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
+    {
+        $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+
 }
