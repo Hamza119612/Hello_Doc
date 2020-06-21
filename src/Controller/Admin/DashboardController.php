@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @IsGranted("ROLE_ADMIN")
+     * 
      * @Route("/admin", name="admin_index")
      */ 
     public function index(): Response

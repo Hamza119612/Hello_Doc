@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Specialite;
-use App\Form\SpecialiteType;
+use App\Form\Specialite1Type;
 use App\Repository\SpecialiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class SpecialiteController extends AbstractController
     public function new(Request $request): Response
     {
         $specialite = new Specialite();
-        $form = $this->createForm(SpecialiteType::class, $specialite);
+        $form = $this->createForm(Specialite1Type::class, $specialite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class SpecialiteController extends AbstractController
      */
     public function edit(Request $request, Specialite $specialite): Response
     {
-        $form = $this->createForm(SpecialiteType::class, $specialite);
+        $form = $this->createForm(Specialite1Type::class, $specialite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

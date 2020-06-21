@@ -85,6 +85,11 @@ class User implements UserInterface
      */
     private $date_de_naissance;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Specialite::class, inversedBy="user")
+     */
+    private $specialite;
+
    
 
     
@@ -271,6 +276,18 @@ class User implements UserInterface
     public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    public function getSpecialite(): ?Specialite
+    {
+        return $this->specialite;
+    }
+
+    public function setSpecialite(?Specialite $specialite): self
+    {
+        $this->specialite = $specialite;
 
         return $this;
     }

@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Specialite_medcin</th>
+                <th>Slug</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ specialite.id }}</td>
                 <td>{{ specialite.specialiteMedcin }}</td>
+                <td>{{ specialite.slug }}</td>
                 <td>
                     <a href="{{ path('specialite_show', {'id': specialite.id}) }}">show</a>
                     <a href="{{ path('specialite_edit', {'id': specialite.id}) }}">edit</a>
@@ -25,7 +27,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
