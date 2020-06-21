@@ -3,12 +3,17 @@
 namespace App\Controller\midlware;
 Use App\Entity\User;
 Use App\Repository\UserRepository;
+Use App\Form\UserType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
+/**
+ * 
+ * @Route("/Verify")
+ */
 class VerficiationController extends AbstractController
 {
     /**

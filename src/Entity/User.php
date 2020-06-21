@@ -49,31 +49,19 @@ class User implements UserInterface
     private $prenom;
 
     /**
-<<<<<<< HEAD
      * @ORM\Column(type="string", length=255 , nullable=true)
-=======
-     * @ORM\Column(type="string", length=255, nullable=true)
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
      */
     private $type;
 
     /**
-<<<<<<< HEAD
      * @ORM\Column(type="integer" , nullable=true)
-=======
-     * @ORM\Column(type="integer", nullable=true)
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
      */
     private $telephone;
 
   
 
     /**
-<<<<<<< HEAD
-     * @ORM\Column(type="datetime" , nullable=true)
-=======
-     * @ORM\Column(type="integer", nullable=true)
->>>>>>> 76f88b131c60ff7e61c9881eb12f9fa869e9f893
+     * @ORM\Column(type="integer" , nullable=true)
      */
     private $prix_visite;
 
@@ -134,7 +122,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = '';
 
         return array_unique($roles);
     }
