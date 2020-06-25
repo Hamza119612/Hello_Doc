@@ -22,6 +22,11 @@ class Rendezvous
      */
     private $date_rdv;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="rendezvouses")
+     */
+    private $user;
+
    
 
     public function getId_rdv(): ?int
@@ -40,6 +45,20 @@ class Rendezvous
 
         return $this;
     }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+   
 
    
 }

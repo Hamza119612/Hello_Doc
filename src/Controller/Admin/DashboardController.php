@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Specialite;
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
@@ -34,6 +35,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa-home'),
 
             MenuItem::linkToCrud('Specialite', 'fa fa-tags', Specialite::class),
+            MenuItem::linkToCrud('User', 'fa fa-tags', User::class),
 
           
         ];

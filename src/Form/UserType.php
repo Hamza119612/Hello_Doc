@@ -18,12 +18,11 @@ class UserType extends AbstractType
             ->add('Cabinet_add')
             ->add('prix_visite')
             ->add('cin')
-            ->add('Specialite',EntityType::class,
-                ['class'=>Specialite::class,
-                'choice_label'=>'specialite_medcin',
-                'label'=>'Specialite'])
-        ;
-    }
+            // ->add('specialite',EntityType::class,[
+            //     'class'=>Specialite::class,
+            //     'label'=>'Votre Specialite',
+            //     'choice_label' => 'specialite_medcin']);
+    ;}
 
     public function configureOptions(OptionsResolver $resolver)
     {

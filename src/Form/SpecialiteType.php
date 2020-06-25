@@ -13,6 +13,8 @@ class SpecialiteType extends AbstractType
     {
         $builder
             ->add('specialite_medcin')
+            ->add('slug')
+        
         ;
     }
 

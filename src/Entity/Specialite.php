@@ -17,31 +17,27 @@ class Specialite
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $id_specialite;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $specialite_medcin;
 
-    /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="specialite")
-     */
-    private $user;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
 
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $user;
 
-    public function getId(): ?int
+    public function getIdSpecialite(): ?int
     {
-        return $this->id;
+        return $this->id_specialite;
     }
 
     public function getSpecialiteMedcin(): ?string
@@ -52,37 +48,6 @@ class Specialite
     public function setSpecialiteMedcin(string $specialite_medcin): self
     {
         $this->specialite_medcin = $specialite_medcin;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|user[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(user $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setSpecialite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(user $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getSpecialite() === $this) {
-                $user->setSpecialite(null);
-            }
-        }
 
         return $this;
     }
@@ -98,4 +63,20 @@ class Specialite
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+   
+
+    
 }

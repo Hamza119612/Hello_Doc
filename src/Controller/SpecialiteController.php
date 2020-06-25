@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Specialite;
-use App\Form\Specialite1Type;
+use App\Form\SpecialiteType;
 use App\Repository\SpecialiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class SpecialiteController extends AbstractController
     public function new(Request $request): Response
     {
         $specialite = new Specialite();
-        $form = $this->createForm(Specialite1Type::class, $specialite);
+        $form = $this->createForm(SpecialiteType::class, $specialite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,7 +49,7 @@ class SpecialiteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="specialite_show", methods={"GET"})
+     * @Route("/{id_specialite}", name="specialite_show", methods={"GET"})
      */
     public function show(Specialite $specialite): Response
     {
@@ -59,11 +59,11 @@ class SpecialiteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="specialite_edit", methods={"GET","POST"})
+     * @Route("/{id_specialite}/edit", name="specialite_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Specialite $specialite): Response
     {
-        $form = $this->createForm(Specialite1Type::class, $specialite);
+        $form = $this->createForm(SpecialiteType::class, $specialite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,11 +79,11 @@ class SpecialiteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="specialite_delete", methods={"DELETE"})
+     * @Route("/{id_specialite}", name="specialite_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Specialite $specialite): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$specialite->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$specialite->getId_specialite(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($specialite);
             $entityManager->flush();

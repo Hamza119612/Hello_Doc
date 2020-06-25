@@ -3,6 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<div Class="Container">
     <h1>Register</h1>
     <div class="registration_form">
         {{ form_start(registrationForm) }}
@@ -18,7 +19,7 @@
     {{ form_end(registrationForm) }}
     </div>
 
-
+</div>
     <script>
     
       $(document).ready(function() {
@@ -29,4 +30,5 @@
     });
     
     </script>
+    
 {% endblock %}

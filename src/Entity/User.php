@@ -85,12 +85,29 @@ class User implements UserInterface
      */
     private $date_de_naissance;
 
+  
+
     /**
-     * @ORM\ManyToOne(targetEntity=Specialite::class, inversedBy="user")
+     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="user")
      */
-    private $specialite;
+    private $rendezvouses;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Specialite::class, mappedBy="user")
+     */
+    private $Specialite;
+
+
 
    
+
+    public function __construct()
+    {
+        $this->rendezvouses = new ArrayCollection();
+        $this->Specialite = new ArrayCollection();
+    }
+
+    
 
     
     public function getId(): ?int
@@ -280,17 +297,72 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getSpecialite(): ?Specialite
+
+    /**
+     * @return Collection|Rendezvous[]
+     */
+    public function getRendezvouses(): Collection
     {
-        return $this->specialite;
+        return $this->rendezvouses;
     }
 
-    public function setSpecialite(?Specialite $specialite): self
+    public function addRendezvouse(Rendezvous $rendezvouse): self
     {
-        $this->specialite = $specialite;
+        if (!$this->rendezvouses->contains($rendezvouse)) {
+            $this->rendezvouses[] = $rendezvouse;
+            $rendezvouse->setUser($this);
+        }
 
         return $this;
     }
+
+    public function removeRendezvouse(Rendezvous $rendezvouse): self
+    {
+        if ($this->rendezvouses->contains($rendezvouse)) {
+            $this->rendezvouses->removeElement($rendezvouse);
+            // set the owning side to null (unless already changed)
+            if ($rendezvouse->getUser() === $this) {
+                $rendezvouse->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Specialite[]
+     */
+    public function getSpecialite(): Collection
+    {
+        return $this->Specialite;
+    }
+
+    public function addSpecialite(Specialite $specialite): self
+    {
+        if (!$this->Specialite->contains($specialite)) {
+            $this->Specialite[] = $specialite;
+            $specialite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpecialite(Specialite $specialite): self
+    {
+        if ($this->Specialite->contains($specialite)) {
+            $this->Specialite->removeElement($specialite);
+            // set the owning side to null (unless already changed)
+            if ($specialite->getUser() === $this) {
+                $specialite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+ 
+
+
 
 
 }

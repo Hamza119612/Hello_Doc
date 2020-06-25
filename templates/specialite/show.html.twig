@@ -8,8 +8,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ specialite.id }}</td>
+                <th>Id_specialite</th>
+                <td>{{ specialite.idSpecialite }}</td>
             </tr>
             <tr>
                 <th>Specialite_medcin</th>
@@ -24,7 +24,7 @@
 
     <a href="{{ path('specialite_index') }}">back to list</a>
 
-    <a href="{{ path('specialite_edit', {'id': specialite.id}) }}">edit</a>
+    <a href="{{ path('specialite_edit', {'id_specialite': specialite.id_specialite}) }}">edit</a>
 
     {{ include('specialite/_delete_form.html.twig') }}
 {% endblock %}
