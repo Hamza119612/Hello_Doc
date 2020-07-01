@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Specialite;
+use App\Entity\Spcialite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Specialite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Specialite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Specialite[]    findAll()
- * @method Specialite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Spcialite|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Spcialite|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Spcialite[]    findAll()
+ * @method Spcialite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SpecialiteRepository extends ServiceEntityRepository
+class SpcialiteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Specialite::class);
+        parent::__construct($registry, Spcialite::class);
     }
 
     // /**
-    //  * @return Specialite[] Returns an array of Specialite objects
+    //  * @return Spcialite[] Returns an array of Spcialite objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class SpecialiteRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Specialite
+    public function findOneBySomeField($value): ?Spcialite
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

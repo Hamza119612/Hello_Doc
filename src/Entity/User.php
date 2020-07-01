@@ -93,9 +93,10 @@ class User implements UserInterface
     private $rendezvouses;
 
     /**
-     * @ORM\OneToMany(targetEntity=Specialite::class, mappedBy="user")
+     * @ORM\ManyToOne(targetEntity=Spcialite::class, inversedBy="users" , cascade={"persist"})
      */
-    private $Specialite;
+    private $specialite;
+
 
 
 
@@ -104,7 +105,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->rendezvouses = new ArrayCollection();
-        $this->Specialite = new ArrayCollection();
     }
 
     
@@ -329,38 +329,17 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Specialite[]
-     */
-    public function getSpecialite(): Collection
+    public function getSpecialite(): ?Spcialite
     {
-        return $this->Specialite;
+        return $this->specialite;
     }
 
-    public function addSpecialite(Specialite $specialite): self
+    public function setSpecialite(?Spcialite $specialite): self
     {
-        if (!$this->Specialite->contains($specialite)) {
-            $this->Specialite[] = $specialite;
-            $specialite->setUser($this);
-        }
+        $this->specialite = $specialite;
 
         return $this;
     }
-
-    public function removeSpecialite(Specialite $specialite): self
-    {
-        if ($this->Specialite->contains($specialite)) {
-            $this->Specialite->removeElement($specialite);
-            // set the owning side to null (unless already changed)
-            if ($specialite->getUser() === $this) {
-                $specialite->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
- 
 
 
 

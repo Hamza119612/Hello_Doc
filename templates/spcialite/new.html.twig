@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Spcialite{% endblock %}
+
+{% block body %}
+    <h1>Create new Spcialite</h1>
+
+    {{ include('spcialite/_form.html.twig') }}
+
+    <a href="{{ path('spcialite_index') }}">back to list</a>
+{% endblock %}

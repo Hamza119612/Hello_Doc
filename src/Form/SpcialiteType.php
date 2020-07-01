@@ -2,26 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Specialite;
+use App\Entity\Spcialite;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SpecialiteType extends AbstractType
+class SpcialiteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('specialite_medcin')
-            ->add('slug')
-        
+            ->add('Spec_Medcin')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Specialite::class,
+            'data_class' => Spcialite::class,
         ]);
     }
 }
