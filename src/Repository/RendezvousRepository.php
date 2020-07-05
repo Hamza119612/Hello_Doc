@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Repository;
+Use App\Entity\User;
 
 use App\Entity\Rendezvous;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
+
 
 /**
  * @method Rendezvous|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +18,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RendezvousRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry , TokenStorageInterface $tokenStorage)
     {
         parent::__construct($registry, Rendezvous::class);
+        $this->User = $tokenStorage->getToken()->getUser();
+       
     }
 
     // /**
@@ -47,4 +53,37 @@ class RendezvousRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findmyrdv()
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM rendezvous WHERE user_id = '.$this->User->getId();
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
+    public function findrnameofmydoc()
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM user INNER JOIN rendezvous ON rendezvous.docotr_name = user.id and rendezvous.user_id = '.$this->User->getId() ;
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
+    public function finddoctorrdv()
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM user INNER JOIN rendezvous ON rendezvous.user_id = user.id and rendezvous.docotr_name = '.$this->User->getId();
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
+ 
+
+
+
+  
 }

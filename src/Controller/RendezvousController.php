@@ -21,21 +21,61 @@ class RendezvousController extends AbstractController
     /**
      * @Route("/", name="rendezvous_index", methods={"GET"})
      */
-    public function index(RendezvousRepository $rendezvousRepository): Response
-    {
+    public function index(RendezvousRepository $RendezvousRepository , UserRepository $UserRepository  ) { 
+        
+
+        $Rendezvous = $this->getDoctrine()
+        ->getRepository(Rendezvous::class)
+        ->findmyrdv(); 
+
+
+        $Doctor = $RendezvousRepository
+        ->findrnameofmydoc(); 
+      
+        // $rdv = $RendezvousRepository->findAll(); 
+        
+
+
         return $this->render('rendezvous/index.html.twig', [
-            'rendezvouses' => $rendezvousRepository->findAll(),
+            'rendezvouses' => $Rendezvous,
+            'user' => $Doctor ,
         ]);
     }
 
     /**
-     * @Route("/PrendreRdv", name="rendezvous_new", methods={"GET","POST"})
+     * @Route("/listrdvous", name="listrdvous", methods={"GET"})
      */
-    public function new(Request $request): Response
+    public function listrdv( ) { 
+        
+
+        $Rendezvous = $this->getDoctrine()
+        ->getRepository(Rendezvous::class)
+        ->finddoctorrdv(); 
+
+
+      
+        // $rdv = $RendezvousRepository->findAll(); 
+        
+        return $this->render('medcin_profile/medcinrdv.html.twig', [
+            'rendezvouses' => $Rendezvous,
+            
+        ]);
+
+      
+    }
+
+
+
+    /**
+     * @Route("/PrendreRdv{id}", name="rendezvous_new", methods={"GET","POST"})
+     */
+    public function new( $id ,Request $request ): Response
     {
         $rendezvou = new Rendezvous();
         $form = $this->createForm(RendezvousType::class, $rendezvou);
         $form->handleRequest($request);
+        
+        $rendezvou->setDocotrName($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -48,6 +88,7 @@ class RendezvousController extends AbstractController
         return $this->render('rendezvous/new.html.twig', [
             'rendezvou' => $rendezvou,
             'form' => $form->createView(),
+            
         ]);
     }
 
@@ -72,7 +113,7 @@ class RendezvousController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('rendezvous_index');
+            return $this->redirectToRoute('rendezvous_index' );
         }
 
         return $this->render('rendezvous/edit.html.twig', [

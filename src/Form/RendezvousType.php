@@ -29,19 +29,22 @@ class RendezvousType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date_rdv', DateType::class, [
+            ->add('date_rdv', DateTimeType::class, [
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',
+               
             ])
             ->add('user',EntityType::class,[
                 'class'=>User::class,
-                'label'=>'Votre Prenom',
+                'label' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->where('u.id = '.$this->User->getId());
                 },
-                'choice_label' => 'nom']);
+                'choice_label' => 'nom' ,
+                'attr'=>array('style'=>'display:none;') ,
+                
+                ]);
         
     }
 

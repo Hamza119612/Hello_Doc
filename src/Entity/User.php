@@ -88,7 +88,7 @@ class User implements UserInterface
   
 
     /**
-     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Rendezvous::class, mappedBy="user" , cascade={"persist"})
      */
     private $rendezvouses;
 

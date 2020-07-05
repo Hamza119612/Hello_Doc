@@ -40,7 +40,7 @@ class VerficiationController extends AbstractController
             }
         }
         elseif (($type === 'Patient' ) ) {
-            return $this->redirectToRoute('patient_profile');
+            return $this->redirectToRoute('patient_profile' );
         }
          else {
              return $this->redirectToRoute('admin_index');

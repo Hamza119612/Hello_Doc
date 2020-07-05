@@ -23,9 +23,14 @@ class Rendezvous
     private $date_rdv;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="rendezvouses")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rendezvouses" , cascade={"persist"})
      */
-    private $user;
+    private $User;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $docotr_name;
 
    
 
@@ -46,14 +51,26 @@ class Rendezvous
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $User): self
     {
-        $this->user = $user;
+        $this->User = $User;
+
+        return $this;
+    }
+
+    public function getDocotrName(): ?string
+    {
+        return $this->docotr_name;
+    }
+
+    public function setDocotrName(string $docotr_name): self
+    {
+        $this->docotr_name = $docotr_name;
 
         return $this;
     }

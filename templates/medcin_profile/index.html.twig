@@ -4,8 +4,13 @@
 
 {% block body %}
 
+{% include "inc/navigation.html.twig" %}
 
-<div class="example-wrapper">
-    Hello {{app.user.username}}
+<div class="container">
+<div class="mb-3" >
+ <h1>   Bounjour  {{ app.user.nom }}</h1> 
+    <p>Rejoignez le premier réseau médical professionnel
+inscription gratuite et données 100% confidentielles</p>
+</div>
 </div>
 {% endblock %}

@@ -6,7 +6,6 @@ use App\Entity\Medcin;
 use App\Entity\User;
 use App\Form\MedcinType;
 use App\Form\UserType;
-use App\Repository\MedcinRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +22,7 @@ class MedcinController extends AbstractController
     /**
      * @Route("/ListMedcin", name="medcin_index", methods={"GET"})
      */
-    public function index(MedcinRepository $medcinRepository , UserRepository $UserRepository ): Response
+    public function index(UserRepository $UserRepository ): Response
     {
 
         
