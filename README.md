@@ -22,7 +22,4 @@ $ localhost:8080/admin/new                      // to create a new unique admin
 $symfony serve 
 ```
 ## Some Screen Captures 
-
-![alt tag](https://{https://i.postimg.cc/hjhPvS98/tesss.png "Home Page")
-![Example App Screen Capture]
-(https://i.postimg.cc/hjhPvS98/tesss.png)
+<img src="https://i.postimg.cc/hjhPvS98/tesss.png" alt="Homescreen">
