@@ -63,6 +63,15 @@ class RendezvousRepository extends ServiceEntityRepository
         $stmt->execute();
        return $stmt->fetchAll();
     }
+    public function findbyiddocteur($idDoc)
+    {
+        $em =$this->getEntityManager()
+            ->getConnection();
+        $sql = 'SELECT * FROM user WHERE rendezvous.docotr_name =' .$idDoc;
+        $stmt = $em->prepare($sql);
+        $stmt->execute();
+       return $stmt->fetchAll();
+    }
     public function findrnameofmydoc()
     {
         $em =$this->getEntityManager()
